@@ -18,7 +18,7 @@ if uploaded_file is not None:
     st.subheader("Data Preview")
     st.dataframe(df.head())
     
-    # Dataset Overview Section
+    # Dataset Overview 
     st.subheader("Dataset Overview")
     col1, col2, col3 = st.columns(3)
     
@@ -27,10 +27,11 @@ if uploaded_file is not None:
     with col2:
         st.metric("Total Columns", df.shape[1])
     with col3:
-        file_size_mb = len(uploaded_file.getvalue()) / (1024*1024)
+        file_size_mb = len(uploaded_file.getvalue()) / (1024*1024)  
+        # uploaded_file.getvalue() returns the file's raw bytes, and len() gets the byte count—dividing by (1024*1024) converts bytes to megabytes.
         st.metric("File Size", f"{file_size_mb:.2f} MB")
     
-    # Column Details Section
+    # Column Details 
     st.subheader("About the Columns")
     
     col_info = pd.DataFrame({
@@ -43,7 +44,7 @@ if uploaded_file is not None:
     
     st.dataframe(col_info, use_container_width=True)
     
-    # Data Quality Issues Section
+    # Data Quality Issues 
     st.subheader("Data Quality Issues")
     
     col1, col2 = st.columns(2)
@@ -55,6 +56,10 @@ if uploaded_file is not None:
     with col2:
         total_missing = df.isnull().sum().sum()
         st.metric("Total Missing Values", total_missing)
+    
+    # displays the rows that were duplicated
+    st.write("Duplicated rows"):
+    st.dataframe(df[df.duplicated()])
     
     # Columns with issues
     st.write("**Columns with Missing Data:**")
