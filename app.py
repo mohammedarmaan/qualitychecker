@@ -58,7 +58,7 @@ if uploaded_file is not None:
         st.metric("Total Missing Values", total_missing)
     
     # displays the rows that were duplicated
-    st.write("Duplicated rows"):
+    st.write("Duplicated rows")
     st.dataframe(df[df.duplicated()])
     
     # Columns with issues
